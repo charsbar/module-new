@@ -1,5 +1,11 @@
 Revision history for Module-New
 
+0.03 2009/03/28
+  - bumped up the version req of Log::Dump to 0.03
+  - added missing "no_prompt" for a config test
+    (which must be the cause of the hang)
+  - removed a broken piece of a test (deprecated option)
+
 0.02 2009/03/26
   - initial CPAN release. totally refactored.
 
