@@ -10,7 +10,7 @@ WriteMakefile(
   PREREQ_PM => {
     'File::HomeDir'         => '0.66',
     'Getopt::Long'          => 0,
-    'Log::Dump'             => 0,
+    'Log::Dump'             => '0.03',
     'Path::Extended'        => '0.10',
     'String::CamelCase'     => 0,
     'Sub::Install'          => 0,
