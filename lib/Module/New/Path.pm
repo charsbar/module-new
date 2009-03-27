@@ -49,7 +49,8 @@ sub guess_root {
     return $self->set_root($dir);
   }
 
-  while ( $dir->parent ne $dir ) {
+  my $try = 30;
+  while ( $try-- and $dir->parent ne $dir ) {
     if ( $dir->subdir('lib')->exists ) {
       if ( $dir->file('Makefile.PL')->exists
         or $dir->file('Build.PL')->exists
