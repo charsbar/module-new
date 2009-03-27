@@ -71,9 +71,14 @@ sub not_found : Test {
   my $path = Module::New::Path->new;
 
   my $current = dir('.');
-  my $root    = dir('/');  # I believe root doesn't have a project.
-
-  chdir $root;
+  my $dir;
+  foreach my $candidate (qw( / /tmp )) {
+    $dir = dir($candidate);
+    last if chdir $dir;
+  }
+  if ( $current eq $dir ) {
+    return $class->skip_this_test('this test may be unstable for you')
+  }
 
   local $@;
   eval { $path->guess_root; };
