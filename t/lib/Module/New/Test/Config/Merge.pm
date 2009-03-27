@@ -8,7 +8,7 @@ use Module::New::Config;
 sub merge : Tests(2) {
   my $class = shift;
 
-  my $config = Module::New::Config->new;
+  my $config = Module::New::Config->new( no_prompt => 1 );
 
   local @ARGV = qw(--first=first --second=second);
 
