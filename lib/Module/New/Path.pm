@@ -127,6 +127,7 @@ sub create_file {
         # just skip and do nothing
       }
       else {
+        next if $file->slurp eq $files{$path};
         Carp::confess "$path already exists";
       }
     }
