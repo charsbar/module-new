@@ -6,11 +6,10 @@ use Text::MicroTemplate ();
 
 # XXX: I'm still wondering if I should use Mojo::Template here...
 my $ENGINE = Text::MicroTemplate->new(
-  expression_mark     => '=e',
-  raw_expression_mark => '=',
-  line_start          => '%',
-  tag_start           => '<%',
-  tag_end             => '%>',
+  expression_mark => '=',
+  line_start      => '%',
+  tag_start       => '<%',
+  tag_end         => '%>',
 );
 
 sub render {
