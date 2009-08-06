@@ -12,10 +12,9 @@ use inc::Module::Install;
 name     '<%= $c->distname %>';
 all_from '<%= $c->mainfile %>';
 
-build_requires 'Test::More' => '0.47';
-build_requires 'Test::UseAllModules' => '0.10';
+test_requires 'Test::More' => '0.47';
+test_requires 'Test::UseAllModules' => '0.10';
 
-auto_install;
 WriteAll;
 EOT
 };
