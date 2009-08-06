@@ -17,7 +17,7 @@ WriteMakefile(
     'Test::Classy'          => '0.04',
     'Test::More'            => '0.47',
     'Test::UseAllModules'   => '0.09',
-    'Text::MicroTemplate'   => '0.05',
+    'Text::MicroTemplate'   => '0.06',
     'Time::Piece'           => 0,
     'YAML'                  => '0.60',
   },
