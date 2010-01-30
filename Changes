@@ -1,11 +1,13 @@
 Revision history for Module-New
 
-0.05 to be released
+0.05 2010/01/31
   - Test::* modules should be declared with "test_requires"
     at least when we use Module::Install (Adam Kennedy's suggestion)
   - removed auto_install from the template for Module::Install.
     It's useful for applications but it's also an unblessed
     feature, and be avoided for modules. (Adam Kennedy's suggestion)
+  - added XS support
+  - added several context accessors
 
 0.04 2009/08/06
   - no new features
