@@ -12,12 +12,17 @@ use warnings;
 
 our $VERSION = '0.01';
 
+% if ($c->config('xs')) {
+require XSLoader;
+XSLoader::load(__PACKAGE__, $VERSION);
+% } else {
 sub new {
     my $class = shift;
     my $self  = bless {}, $class;
 
     $self;
 }
+% }
 
 1;
 

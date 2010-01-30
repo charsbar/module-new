@@ -130,6 +130,15 @@ functions {
 
       my $context = Module::New->context;
          $context->files->add( @files );
+      if ($context->config('xs')) {
+        $context->files->add('XS');
+        eval {
+          require Devel::PPPort;
+          Devel::PPPort::WriteFile();
+          $context->log( info => "created ppport.h" );
+        };
+        $context->log( warn => $@ ) if $@;
+      }
       while ( my $name = $context->files->next ) {
         if ( $name eq '{ANY_TYPE}' ) {
           $name = $context->config('type') || 'Module';

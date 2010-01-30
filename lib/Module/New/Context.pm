@@ -115,7 +115,7 @@ sub moduleid {
 
 sub modulebase {
   my $self = shift;
-  my ($name) = $self->{module} =~ /(\w+)\.pm$/;
+  my ($name) = $self->{module} =~ /(\w+)$/;
   return $name;
 }
 
@@ -132,7 +132,7 @@ sub repository {
   if ( @_ ) {
     $self->{repository} = shift;
   }
-  $self->{repository};
+  $self->{repository} || '';
 }
 
 *dist_name   = \&distname;

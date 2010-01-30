@@ -5,7 +5,7 @@ use warnings;
 use Module::New::Recipe;
 use Module::New::Command::Basic;
 
-available_options qw( make=s test|t=s@ edit|e no_dirs );
+available_options qw( make=s test|t=s@ edit|e no_dirs xs );
 
 flow {
   set_distname;
