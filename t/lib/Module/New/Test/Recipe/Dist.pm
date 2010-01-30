@@ -106,6 +106,30 @@ sub module_install : Tests(3) {
   $testapp->remove;
 }
 
+sub xs : Tests(5) {
+  my $class = shift;
+
+  my $current = dir('.');
+  my $testapp = $class->setup_testapp;
+
+  Module::New->context->config->set( xs => 1 );
+
+  $class->test_recipe('MyApp');
+
+  ok $testapp->file('MyApp/trunk/MyApp.xs')->exists, $class->message('main .xs exists');
+  ok $testapp->file('MyApp/trunk/MyApp.h')->exists, $class->message('main .h exists');
+  SKIP: {
+    eval { require Devel::PPPort };
+    skip "requires Devel::PPPort", 1 if $@;
+    ok $testapp->file('MyApp/trunk/ppport.h'), $class->message('ppport.h exists');
+  }
+  my $main_pm = $testapp->file('MyApp/trunk/lib/MyApp.pm')->slurp;
+  like $main_pm => qr/XSLoader/, $class->message('MyApp.pm loads XSLoader');
+
+  chdir $current;
+  $testapp->remove;
+}
+
 sub setup_testapp {
   my ($class, $path) = @_;
 
