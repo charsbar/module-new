@@ -11,7 +11,7 @@ use Module::Build;
 
 my $builder = Module::Build->new(
     module_name       => '<%= $c->module %>',
-    license           => 'perl',
+    license           => '<%= $c->config('license') || 'perl' %>',
     dist_author       => '<%= $c->config('author') %> <<%= $c->config('email') %>>',
     dist_version_from => '<%= $c->mainfile %>',
     requires => {
@@ -19,6 +19,9 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More'          => '0.47',
         'Test::UseAllModules' => '0.10',
+    },
+    resources => {
+        repository => '<%= $c->repository %>',
     },
 );
 
