@@ -121,6 +121,14 @@ sub distid {
   $self->{distid};
 }
 
+sub repository {
+  my $self = shift;
+  if ( @_ ) {
+    $self->{repository} = shift;
+  }
+  $self->{repository};
+}
+
 *dist_name   = \&distname;
 *dist_id     = \&distid;
 *main_file   = \&mainfile;
@@ -188,6 +196,10 @@ holds a main module id, which is the lowercased module name, replaced double col
 =head2 modulepath, module_path
 
 holds a main module directory path, without prepending "lib".
+
+=head2 repository
+
+holds a repository url.
 
 =head1 AUTHOR
 
