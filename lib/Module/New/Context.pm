@@ -113,6 +113,12 @@ sub moduleid {
   $self->{moduleid};
 }
 
+sub modulebase {
+  my $self = shift;
+  my ($name) = $self->{module} =~ /(\w+)\.pm$/;
+  return $name;
+}
+
 sub distid {
   my $self = shift;
   if ( @_ ) {
@@ -135,6 +141,7 @@ sub repository {
 *main_dir    = \&maindir;
 *module_path = \&modulepath;
 *module_id   = \&moduleid;
+*module_base = \&modulebase;
 
 1;
 
@@ -196,6 +203,10 @@ holds a main module id, which is the lowercased module name, replaced double col
 =head2 modulepath, module_path
 
 holds a main module directory path, without prepending "lib".
+
+=head2 modulebase, module_base
+
+holds a basename of the main module, without ".pm".
 
 =head2 repository
 
