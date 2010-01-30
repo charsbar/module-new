@@ -59,7 +59,13 @@ creates a distribution in C<t/> directory, instead of the current directory.
 
   module_new dist Module::Name --no_dirs
 
-doesn't creates <Module-Name/trunk>, <Module-Name/branches>, <Module-Name/tags> directories for C<subversion>, and creates various files including C<lib/Module/Name.pm> just under the <Module-Name> directory.
+doesn't creates C<Module-Name/trunk>, C<Module-Name/branches>, C<Module-Name/tags> directories for C<subversion>, and creates various files including C<lib/Module/Name.pm> just under the C<Module-Name> directory.
+
+=item xs
+
+  module_new dist Module::Name --xs
+
+creates extra XS stuff like C<Name.xs>, C<Name.h> and C<ppport.h> (if you have installed L<Devel::PPPort>). Also, the content of C<lib/Module/Name.pm> changes to load L<XSLoader>.
 
 =item make
 
