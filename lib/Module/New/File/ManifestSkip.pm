@@ -20,6 +20,8 @@ file 'MANIFEST.SKIP' => content { return <<'EOT';
 \.SKIP$
 (^|/)pm_to_blib
 ^cover_db/
+^nytprof/
+nytprof.out
 EOT
 };
 
