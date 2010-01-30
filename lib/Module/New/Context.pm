@@ -55,7 +55,11 @@ sub distname {
 
     croak "$dist looks weird" if $dist =~ tr/A-Za-z0-9_\-//cd;
 
+    my $distid = lc $dist;
+       $distid =~ s/\-/_/g;
+
     $self->{distname} = $dist;
+    $self->{distid}   = $distid;
     $self->module( $module );
   }
 
@@ -67,9 +71,13 @@ sub module {
 
   if ( @_ ) {
     $self->{module} = shift;
-    my $file = $self->{module};
-       $file =~ s|::|\/|g;
-    $self->mainfile("lib/$file.pm");
+    my $path = $self->{module};
+       $path =~ s|::|\/|g;
+    my $id   = lc $path;
+       $id   =~ s|/|_|g;
+    $self->mainfile("lib/$path.pm");
+    $self->modulepath($path);
+    $self->moduleid($id);
   }
   $self->{module};
 }
@@ -88,6 +96,37 @@ sub maindir {
      $dir =~ s/\.pm$//;
   return $dir;
 }
+
+sub modulepath {
+  my $self = shift;
+  if ( @_ ) {
+    $self->{modulepath} = shift;
+  }
+  $self->{modulepath};
+}
+
+sub moduleid {
+  my $self = shift;
+  if ( @_ ) {
+    $self->{moduleid} = shift;
+  }
+  $self->{moduleid};
+}
+
+sub distid {
+  my $self = shift;
+  if ( @_ ) {
+    $self->{distid} = shift;
+  }
+  $self->{distid};
+}
+
+*dist_name   = \&distname;
+*dist_id     = \&distid;
+*main_file   = \&mainfile;
+*main_dir    = \&maindir;
+*module_path = \&modulepath;
+*module_id   = \&moduleid;
 
 1;
 
@@ -122,21 +161,33 @@ returns a ::Config object if there's no argument, and returns an appropriate con
 
 takes a license name and returns a license text (perl license by default).
 
-=head2 distname
+=head2 distname, dist_name
 
 holds a distribution name you passed to the command.
+
+=head2 distid, dist_id
+
+holds a distribution id, which is the lowercased distribution name, replaced hyphens with underscores.
 
 =head2 module
 
 holds a main module name you passed to the command (or the one converted from a distribution name).
 
-=head2 mainfile
+=head2 mainfile, main_file
 
 holds a main module file path.
 
-=head2 maindir
+=head2 maindir, main_dir
 
 holds a main module directory path.
+
+=head2 moduleid, module_id
+
+holds a main module id, which is the lowercased module name, replaced double colons with underscores.
+
+=head2 modulepath, module_path
+
+holds a main module directory path, without prepending "lib".
 
 =head1 AUTHOR
 
