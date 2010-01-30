@@ -129,6 +129,7 @@ sub test_recipe {
   local $@;
   eval { $recipe->run(@args) };
   ok !$@, $class->message('created a distribution');
+  diag $@ if $@;
 }
 
 sub load_recipe {

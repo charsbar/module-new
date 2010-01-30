@@ -16,6 +16,7 @@ sub default : Test {
   my $context = Module::New->setup('Module::New::ForTest');
   eval { $recipe->run; };
   ok !$@ && $context->path->_root eq dir('.'), $class->message('current is root');
+  diag $@ if $@;
 
   chdir $current;
 }
