@@ -19,7 +19,7 @@ WriteMakefile(
     'Test::UseAllModules'   => '0.09',
     'Text::MicroTemplate'   => '0.06',
     'Time::Piece'           => 0,
-    'YAML'                  => '0.60',
+    'YAML::Tiny'            => '1.51',
   },
   EXE_FILES => ['module_new'],
   ($ExtUtils::MakeMaker::VERSION >= 6.31

@@ -6,7 +6,7 @@ use Carp;
 use File::HomeDir;
 use Getopt::Long ();
 use Path::Extended::Dir;
-use YAML;
+use YAML::Tiny;
 
 sub new {
   my ($class, %options) = @_;
@@ -45,7 +45,7 @@ sub save {
 
   $self->{file} ||= $self->_default_file;
 
-  YAML::DumpFile( $self->{file}, $self->{config} );
+  YAML::Tiny::DumpFile( $self->{file}, $self->{config} );
 }
 
 sub load {
@@ -68,7 +68,7 @@ sub _load_and_merge {
   return unless $file && -f $file;
 
   my $config;
-  eval { $config = YAML::LoadFile( $file ) };
+  eval { $config = YAML::Tiny::LoadFile( $file ) };
   return if $@;
 
   foreach my $key ( keys %{ $config } ) {
