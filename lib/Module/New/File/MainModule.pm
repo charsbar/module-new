@@ -15,13 +15,6 @@ our $VERSION = '0.01';
 % if ($c->config('xs')) {
 require XSLoader;
 XSLoader::load(__PACKAGE__, $VERSION);
-% } else {
-sub new {
-    my $class = shift;
-    my $self  = bless {}, $class;
-
-    $self;
-}
 % }
 
 1;
@@ -35,13 +28,10 @@ __END__
 =head1 SYNOPSIS
 
     use <%= $c->module %>;
-    <%= $c->module %>->new;
 
 =head1 DESCRIPTION
 
 =head1 METHODS
-
-=head2 new
 
 =head1 AUTHOR
 
