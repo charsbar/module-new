@@ -15,7 +15,7 @@ flow {
 
     create_files('{ANY_TYPE}');
 
-    edit_mainfile( optional => 1 );
+    edit_mainfile;
   };
 
   create_manifest;
