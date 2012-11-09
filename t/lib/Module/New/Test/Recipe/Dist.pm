@@ -14,7 +14,7 @@ sub normal_run : Tests(9) {
 
   $class->test_recipe('MyApp');
 
-  $class->test_files($testapp->subdir('MyApp/trunk'));
+  $class->test_files($testapp->subdir('MyApp'));
 
   chdir $current;
   $testapp->remove;
@@ -44,7 +44,7 @@ sub default_makemaker : Tests(3) {
 
   $class->test_recipe('MyApp');
 
-  my $maker = $testapp->file('MyApp/trunk/Makefile.PL');
+  my $maker = $testapp->file('MyApp/Makefile.PL');
   ok $maker->exists, $class->message('Makefile.PL exists');
   ok $maker->grep('ExtUtils::MakeMaker'), $class->message('and it uses ExtUtils::MakeMaker');
 
@@ -62,7 +62,7 @@ sub makemaker : Tests(3) {
 
   $class->test_recipe('MyApp');
 
-  my $maker = $testapp->file('MyApp/trunk/Makefile.PL');
+  my $maker = $testapp->file('MyApp/Makefile.PL');
   ok $maker->exists, $class->message('Makefile.PL exists');
   ok $maker->grep('ExtUtils::MakeMaker'), $class->message('and it uses ExtUtils::MakeMaker');
 
@@ -80,7 +80,7 @@ sub module_build : Tests(3) {
 
   $class->test_recipe('MyApp');
 
-  my $maker = $testapp->file('MyApp/trunk/Build.PL');
+  my $maker = $testapp->file('MyApp/Build.PL');
   ok $maker->exists, $class->message('Build.PL exists');
   ok $maker->grep('Module::Build'), $class->message('and it uses Module::Build');
 
@@ -98,7 +98,7 @@ sub module_install : Tests(3) {
 
   $class->test_recipe('MyApp');
 
-  my $maker = $testapp->file('MyApp/trunk/Makefile.PL');
+  my $maker = $testapp->file('MyApp/Makefile.PL');
   ok $maker->exists, $class->message('Makefile.PL exists');
   ok $maker->grep('Module::Install'), $class->message('and it uses Module::Install');
 
@@ -116,14 +116,14 @@ sub xs : Tests(5) {
 
   $class->test_recipe('MyApp');
 
-  ok $testapp->file('MyApp/trunk/MyApp.xs')->exists, $class->message('main .xs exists');
-  ok $testapp->file('MyApp/trunk/MyApp.h')->exists, $class->message('main .h exists');
+  ok $testapp->file('MyApp/MyApp.xs')->exists, $class->message('main .xs exists');
+  ok $testapp->file('MyApp/MyApp.h')->exists, $class->message('main .h exists');
   SKIP: {
     eval { require Devel::PPPort };
     skip "requires Devel::PPPort", 1 if $@;
-    ok $testapp->file('MyApp/trunk/ppport.h'), $class->message('ppport.h exists');
+    ok $testapp->file('MyApp/ppport.h'), $class->message('ppport.h exists');
   }
-  my $main_pm = $testapp->file('MyApp/trunk/lib/MyApp.pm')->slurp;
+  my $main_pm = $testapp->file('MyApp/lib/MyApp.pm')->slurp;
   like $main_pm => qr/XSLoader/, $class->message('MyApp.pm loads XSLoader');
 
   chdir $current;

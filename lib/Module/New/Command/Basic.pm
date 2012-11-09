@@ -73,10 +73,8 @@ functions {
           croak "$distname already exists";
         }
       }
-      $context->path->create_dir("$distname/trunk");
-      $context->path->create_dir("$distname/tags");
-      $context->path->create_dir("$distname/branch");
-      $context->path->change_dir("$distname/trunk");
+      $context->path->create_dir($distname);
+      $context->path->change_dir($distname);
     }
     else {
       $context->path->change_dir(".");
