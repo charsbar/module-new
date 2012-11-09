@@ -1,5 +1,10 @@
 Revision history for Module-New
 
+0.06 2012/11/10
+  - always open a newly created file (if an editor is available)
+  - no trunk/branch/tag layout anymore
+  - switched to YAML::Tiny
+
 0.05 2010/01/31
   - Test::* modules should be declared with "test_requires"
     at least when we use Module::Install (Adam Kennedy's suggestion)
