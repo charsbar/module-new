@@ -21,7 +21,7 @@ WriteMakefile(
     'Time::Piece'           => 0,
     'YAML::Tiny'            => '1.51',
   },
-  EXE_FILES => ['module_new'],
+  EXE_FILES => [grep {-f $_} qw/module_new new/],
   ($ExtUtils::MakeMaker::VERSION >= 6.31
     ? (LICENSE => 'perl')
     : ()
