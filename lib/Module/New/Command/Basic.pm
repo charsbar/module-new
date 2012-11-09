@@ -169,7 +169,7 @@ functions {
       my $self = shift;
 
       my $context = Module::New->context;
-      return if $options{optional} && !$context->config('edit');
+      return if $options{optional};
 
       my $editor = $context->config('editor') || $ENV{EDITOR};
       unless ( $editor ) { carp 'editor is not set'; return; }
