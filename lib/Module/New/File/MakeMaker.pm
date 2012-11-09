@@ -33,7 +33,6 @@ delete $params{LICENSE}          if $eumm < 6.31;
 delete $params{MIN_PERL_VERSION} if $eumm < 6.48;
 delete $params{META_MERGE}       if $eumm < 6.46;
 delete $params{META_ADD}         if $eumm < 6.46;
-delete $params{LICENSE}          if $eumm < 6.31;
 
 if ($eumm < 6.52 && $params{CONFIGURE_REQUIRES}) {
     $params{PREREQ_PM} = {
