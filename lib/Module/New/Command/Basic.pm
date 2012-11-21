@@ -163,6 +163,7 @@ functions {
 
   edit_mainfile => sub (;%) {
     my %options = @_;
+    return if $ENV{HARNESS_ACTIVE} || $INC{'Test/Classy.pm'};
     Module::New::Queue->register(sub {
       my $self = shift;
 
