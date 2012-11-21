@@ -1,5 +1,8 @@
 Revision history for Module-New
 
+0.07 2012/11/22
+  - do not exec editor while testing
+
 0.06 2012/11/10
   - always open a newly created file (if an editor is available)
   - no trunk/branch/tag layout anymore
