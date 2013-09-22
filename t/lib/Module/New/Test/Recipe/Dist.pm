@@ -88,24 +88,6 @@ sub module_build : Tests(3) {
   $testapp->remove;
 }
 
-sub module_install : Tests(3) {
-  my $class = shift;
-
-  my $current = dir('.');
-  my $testapp = $class->setup_testapp;
-
-  Module::New->context->config->set( make => 'ModuleInstall' );
-
-  $class->test_recipe('MyApp');
-
-  my $maker = $testapp->file('MyApp/Makefile.PL');
-  ok $maker->exists, $class->message('Makefile.PL exists');
-  ok $maker->grep('Module::Install'), $class->message('and it uses Module::Install');
-
-  chdir $current;
-  $testapp->remove;
-}
-
 sub xs : Tests(5) {
   my $class = shift;
 
@@ -173,8 +155,8 @@ sub test_files {
   ok $root->file('MANIFEST')->exists, $class->message('MANIFEST exists');
   ok $root->file('MANIFEST.SKIP')->exists, $class->message('MANIFEST.SKIP exists');
   ok $root->file('t/00_load.t')->exists, $class->message('load test exists');
-  ok $root->file('t/99_pod.t')->exists, $class->message('pod test exists');
-  ok $root->file('t/99_podcoverage.t')->exists, $class->message('pod coverage test exists');
+  ok $root->file('xt/99_pod.t')->exists, $class->message('pod test exists');
+  ok $root->file('xt/99_podcoverage.t')->exists, $class->message('pod coverage test exists');
 
 }
 
