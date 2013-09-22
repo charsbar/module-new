@@ -14,6 +14,8 @@ use warnings;
 
 __END__
 
+=encoding utf-8
+
 =head1 NAME
 
 <%= $c->module %>
