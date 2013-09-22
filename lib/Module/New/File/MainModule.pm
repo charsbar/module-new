@@ -21,6 +21,8 @@ XSLoader::load(__PACKAGE__, $VERSION);
 
 __END__
 
+=encoding utf-8
+
 =head1 NAME
 
 <%= $c->module %> - 
