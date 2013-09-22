@@ -1,5 +1,10 @@
 Revision history for Module-New
 
+0.08 2013/09/22
+  - slightly modernized templates
+  - dropped support for Module::Install
+  - switched to ExtUtils::MakeMaker::CPANfile
+
 0.07 2012/11/22
   - do not exec editor while testing
 
