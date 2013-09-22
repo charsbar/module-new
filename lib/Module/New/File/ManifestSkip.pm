@@ -22,6 +22,7 @@ file 'MANIFEST.SKIP' => content { return <<'EOT';
 ^cover_db/
 ^nytprof/
 nytprof.out
+MYMETA\.
 EOT
 };
 
