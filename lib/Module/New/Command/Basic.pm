@@ -88,8 +88,7 @@ functions {
       my $self = shift;
 
       my $context = Module::New->context;
-      $type ||= $context->config('make') || 'MakeMaker';
-      $type = 'ModuleInstall' if $type eq 'MI';
+      $type ||= $context->config('make') || 'MakeMakerCPANfile';
       $type = 'ModuleBuild'   if $type eq 'MB';
       $type = 'MakeMaker'     if $type eq 'EUMM';
 

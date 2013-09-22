@@ -69,9 +69,9 @@ creates extra XS stuff like C<Name.xs>, C<Name.h> and C<ppport.h> (if you have i
 
 =item make
 
-  module_new dist Module::Name --make=ModuleInstall
+  module_new dist Module::Name --make=ModuleBuild
 
-by default, L<Module::New> creates L<ExtUtils::MakeMaker>-based C<Makefile.PL>, but with this option, you can make it to create C<Build.PL> to use L<Module::Build> (set this to C<ModuleBuild> or C<MB> for shortcut), or C<Makefile.PL> powered by L<Module::Install> (set this to C<ModuleInstall>, or C<MI>).
+by default, L<Module::New> creates L<ExtUtils::MakeMaker::CPANfile>-based C<Makefile.PL>, but with this option, you can make it to create C<Build.PL> to use L<Module::Build> (set this to C<ModuleBuild> or C<MB> for shortcut), or C<Makefile.PL> powered by L<ExtUtils::MakeMaker> (set this to C<MakeMaker>, or C<EUMM>).
 
 =item edit
 
