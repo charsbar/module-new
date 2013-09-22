@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Module::New::File;
 
-file 't/99_podcoverage.t' => content { return <<'EOT';
+file 'xt/99_podcoverage.t' => content { return <<'EOT';
 use strict;
 use warnings;
 use Test::More;
