@@ -16,7 +16,6 @@ lib/Module/New/File/MakeMakerCPANfile.pm
 lib/Module/New/File/ManifestSkip.pm
 lib/Module/New/File/Module.pm
 lib/Module/New/File/ModuleBuild.pm
-lib/Module/New/File/ModuleInstall.pm
 lib/Module/New/File/Plain.pm
 lib/Module/New/File/PodCoverageTest.pm
 lib/Module/New/File/PodTest.pm
