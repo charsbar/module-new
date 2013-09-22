@@ -18,7 +18,7 @@ my %params = (
     PREREQ_PM     => {
     },
     BUILD_REQUIRES => {
-        'Test::More'          => '0.47',
+        'Test::More'          => '0.88', # done_testing
         'Test::UseAllModules' => '0.10',
     },
     META_MERGE => {

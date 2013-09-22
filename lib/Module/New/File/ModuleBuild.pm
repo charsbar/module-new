@@ -17,7 +17,7 @@ my $builder = Module::Build->new(
     requires => {
     },
     build_requires => {
-        'Test::More'          => '0.47',
+        'Test::More'          => '0.88', # for done_testing
         'Test::UseAllModules' => '0.10',
     },
     resources => {

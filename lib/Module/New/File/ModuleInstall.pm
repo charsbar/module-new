@@ -12,7 +12,7 @@ use inc::Module::Install;
 name     '<%= $c->distname %>';
 all_from '<%= $c->mainfile %>';
 
-test_requires 'Test::More' => '0.47';
+test_requires 'Test::More' => '0.88'; # for done_testing
 test_requires 'Test::UseAllModules' => '0.10';
 
 % if ($c->repository) {
