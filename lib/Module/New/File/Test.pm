@@ -7,9 +7,9 @@ use Module::New::File;
 file '{MAINFILE}' => content { return <<'EOT';
 use strict;
 use warnings;
-use Test::More qw(no_plan);
+use Test::More;
 
-ok 1;
+done_testing;
 EOT
 };
 
