@@ -28,7 +28,7 @@ my %params = (
     },
 );
 
-my $eumm = $ExtUtils::MakeMaker::VERSION;
+my $eumm = eval $ExtUtils::MakeMaker::VERSION;
 delete $params{LICENSE}          if $eumm < 6.31;
 delete $params{MIN_PERL_VERSION} if $eumm < 6.48;
 delete $params{META_MERGE}       if $eumm < 6.46;
