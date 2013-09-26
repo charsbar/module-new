@@ -5,7 +5,7 @@ use warnings;
 use Carp;
 use Module::New::Loader;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 my $CONTEXT;
 

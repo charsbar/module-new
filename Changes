@@ -1,5 +1,8 @@
 Revision history for Module-New
 
+0.09 2013/09/27
+  - bumped up ExtUtils::MakeMaker::CPANfile requirement to 0.04
+
 0.08 2013/09/22
   - slightly modernized templates
   - dropped support for Module::Install
