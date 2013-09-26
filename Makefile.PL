@@ -9,4 +9,9 @@ WriteMakefile(
   ABSTRACT_FROM  => 'lib/Module/New.pm',
   EXE_FILES => [grep {-f $_} qw/module_new new/],
   LICENSE => 'perl',
+  META_MERGE => {
+    resources => {
+      repository => 'https://github.com/charsbar/module-new',
+    },
+  },
 );
