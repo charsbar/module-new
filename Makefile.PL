@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use ExtUtils::MakeMaker::CPANfile;
+use ExtUtils::MakeMaker::CPANfile 0.04;
 
 WriteMakefile(
   NAME           => 'Module::New',

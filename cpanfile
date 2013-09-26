@@ -15,5 +15,5 @@ on 'test' => sub {
 };
 
 on 'configure' => sub {
-  requires 'ExtUtils::MakeMaker::CPANfile' => '0.03';
+  requires 'ExtUtils::MakeMaker::CPANfile' => '0.04';
 };
