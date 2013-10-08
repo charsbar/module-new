@@ -40,9 +40,12 @@ sub config {
 }
 
 sub license {
-  my ($self, $type, @args) = @_;
+  my ($self, $type, $args) = @_;
   $type ||= $self->config('license') || 'perl';
-  $self->{license}->render( $type, @args );
+  $args ||= {};
+  $args->{holder} ||= $self->config('author');
+  $args->{year} ||= $self->date->year;
+  $self->{license}->object( $type, $args );
 }
 
 sub distname {
@@ -174,7 +177,7 @@ returns a ::Config object if there's no argument, and returns an appropriate con
 
 =head2 license
 
-takes a license name and returns a license text (perl license by default).
+takes a license name (and an optional hash reference for Software::License) and returns a Software::License object (perl license by default).
 
 =head2 distname, dist_name
 

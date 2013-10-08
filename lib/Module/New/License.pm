@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Carp;
 use Sub::Install 'reinstall_sub';
+use Module::Find;
 
 my %LICENSES;
 
@@ -14,29 +15,13 @@ sub _install_dsl {
   return if $class =~ /^Test::/;
 
   reinstall_sub({
-    as   => 'license',
-    into => $class,
-    code => sub ($$) { 
-      my ($name, $text) = @_;
-      $LICENSES{$name} = sub { $text->(@_) };
-    },
-  });
-
-  reinstall_sub({
-    as   => 'content',
-    into => $class,
-    code => sub (&) { return shift },
-  });
-
-  reinstall_sub({
-    as   => 'render',
+    as   => 'object',
     into => $class,
     code => sub {
-      my ($self, $type, @args) = @_;
+      my ($self, $type, $args) = @_;
 
-      return $LICENSES{$type}->(@args) if $LICENSES{$type};
-
-      croak "unknown license type: $type";
+      croak "unknown license type: $type" unless $LICENSES{$type};
+      $LICENSES{$type}->new($args);
     }
   });
 }
@@ -47,13 +32,12 @@ sub import {
   my ($class, $flag) = @_;
 
   _install_dsl(caller) if $flag && $flag eq 'base';
-}
 
-license perl => content { return <<'EOT';
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
-EOT
-};
+  for my $module (sort {$b cmp $a} usesub 'Software::License') {
+    $LICENSES{$module->meta_name}  ||= $module;
+    $LICENSES{$module->meta2_name} ||= $module;
+  }
+}
 
 1;
 

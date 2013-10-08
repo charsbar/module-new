@@ -41,9 +41,7 @@ __END__
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) <%= $c->date->year %> by <%= $c->config('author') %>.
-
-<%= $c->license %>
+<%= $c->license->notice %>
 =cut
 EOT
 };

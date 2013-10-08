@@ -99,7 +99,7 @@ functions {
   create_general_files => sub () { Module::New::Queue->register(sub {
     my $self = shift;
 
-    Module::New->context->files->add(qw( Readme Changes ManifestSkip ));
+    Module::New->context->files->add(qw( Readme Changes ManifestSkip License ));
   })},
 
   create_tests => sub (;@) {
