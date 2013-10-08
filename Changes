@@ -1,5 +1,8 @@
 Revision history for Module-New
 
+0.10 2013/10/08
+  - added a feature to generate LICENSE
+
 0.09 2013/09/27
   - bumped up ExtUtils::MakeMaker::CPANfile requirement to 0.04
 
