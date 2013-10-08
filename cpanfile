@@ -14,6 +14,10 @@ on 'test' => sub {
   requires 'Test::UseAllModules'   => '0.09';
 };
 
+on 'build' => sub {
+  requires 'ExtUtils::MakeMaker::CPANfile' => '0.04';
+};
+
 on 'configure' => sub {
   requires 'ExtUtils::MakeMaker::CPANfile' => '0.04';
 };
