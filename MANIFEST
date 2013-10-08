@@ -10,6 +10,7 @@ lib/Module/New/Context.pm
 lib/Module/New/Date.pm
 lib/Module/New/File.pm
 lib/Module/New/File/Changes.pm
+lib/Module/New/File/License.pm
 lib/Module/New/File/LoadTest.pm
 lib/Module/New/File/MainModule.pm
 lib/Module/New/File/MakeMaker.pm
@@ -37,9 +38,11 @@ lib/Module/New/Recipe/Dist.pm
 lib/Module/New/Recipe/Edit.pm
 lib/Module/New/Recipe/File.pm
 lib/Module/New/Recipe/Help.pm
+lib/Module/New/Recipe/License.pm
 lib/Module/New/Recipe/Manifest.pm
 lib/Module/New/Recipe/Prove.pm
 lib/Module/New/Template.pm
+LICENSE
 Makefile.PL
 MANIFEST			This list of files
 module_new
