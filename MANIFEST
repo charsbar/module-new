@@ -1,4 +1,5 @@
 Changes
+cpanfile
 lib/Module/New.pm
 lib/Module/New/Command/Basic.pm
 lib/Module/New/Command/Help.pm
