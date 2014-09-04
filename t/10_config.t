@@ -2,10 +2,10 @@ use strict;
 use warnings;
 use Test::More;
 use Module::New::Config;
-use Path::Extended;
+use Path::Tiny;
 
 subtest first_time => sub {
-  my $file = file('t/sample.yaml');
+  my $file = path('t/sample.yaml');
   ok !$file->exists, 'sample file does not exist';
 
   my $config = Module::New::Config->new(
@@ -20,8 +20,8 @@ subtest first_time => sub {
 };
 
 subtest from_file => sub {
-  my $file = file('t/sample.yaml');
-  $file->save(<<'YAML');
+  my $file = path('t/sample.yaml');
+  $file->spew(<<'YAML');
 author: me
 email: me@localhost
 YAML
@@ -42,7 +42,7 @@ YAML
 };
 
 subtest from_argv => sub {
-  my $file = file('t/sample.yaml');
+  my $file = path('t/sample.yaml');
   ok !$file->exists, 'sample file does not exist';
 
   my $config = Module::New::Config->new(
@@ -62,8 +62,8 @@ subtest from_argv => sub {
 };
 
 subtest from_mixed_source => sub {
-  my $file = file('t/sample.yaml');
-  $file->save(<<'YAML');
+  my $file = path('t/sample.yaml');
+  $file->spew(<<'YAML');
 author: me
 email: me@localhost
 YAML
@@ -87,8 +87,8 @@ YAML
 };
 
 subtest set_and_save => sub {
-  my $file = file('t/sample.yaml');
-  $file->save(<<'YAML');
+  my $file = path('t/sample.yaml');
+  $file->spew(<<'YAML');
 author: me
 email: me@localhost
 YAML

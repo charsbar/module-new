@@ -5,7 +5,7 @@ use warnings;
 use Carp;
 use Module::New::Meta;
 use Module::New::Queue;
-use Path::Extended;
+use Path::Tiny;
 use String::CamelCase 'decamelize';
 
 functions {
@@ -20,7 +20,7 @@ functions {
       foreach my $base ( $context->loader->_base ) {
         $base .= '::Recipe';
         (my $path = $base) =~ s|::|/|g;
-        my $dir = dir($inc, $path);
+        my $dir = path($inc, $path);
         next unless $dir->exists;
         foreach my $recipe ( $dir->children ) {
           my $basename = $recipe->basename;

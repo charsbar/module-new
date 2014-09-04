@@ -4,16 +4,16 @@ use FindBin;
 use lib "$FindBin::Bin/lib";
 use Test::More;
 use Module::New;
-use Path::Extended;
+use Path::Tiny;
 
 subtest default => sub {
   my $recipe = load_recipe();
 
-  my $current = dir('.');
+  my $current = path('.');
 
   my $context = Module::New->setup('Module::New::ForTest');
   eval { $recipe->run; };
-  ok !$@ && $context->path->_root eq dir('.'), 'current is root';
+  ok !$@ && $context->path->_root->realpath eq path('.')->absolute, 'current is root';
   diag $@ if $@;
 
   chdir $current;

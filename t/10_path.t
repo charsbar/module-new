@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Module::New;
 use Module::New::Path;
-use Path::Extended;
+use Path::Tiny;
 
 Module::New->setup('Module::New::ForTest');
 
@@ -11,59 +11,59 @@ subtest default => sub {
   my $path = Module::New::Path->new;
 
   my $root = eval { $path->guess_root; } || '';
-  my $dir = dir('.');
-  ok $dir->file('Makefile.PL')->exists, 'Makefile.PL exists';
-  ok $root eq $dir, 'root is current dir';
+  my $dir = path('.')->absolute;
+  ok $dir->child('Makefile.PL')->exists, 'Makefile.PL exists';
+  is $root->realpath => $dir->realpath, 'root is current dir';
 };
 
 subtest look_for_makefile_pl => sub {
   my $path = Module::New::Path->new;
 
-  my $current = dir('.');
-  my $testapp = dir('t/TestApp');
+  my $current = path('.')->absolute;
+  my $testapp = path('t/TestApp')->absolute;
      $testapp->mkpath;
-     $testapp->subdir('lib/foo')->mkpath;
-     $testapp->file('Makefile.PL')->touch;
-  ok $testapp->file('Makefile.PL')->exists, 'Makefile.PL exists';
+     $testapp->child('lib/foo')->mkpath;
+     $testapp->child('Makefile.PL')->touch;
+  ok $testapp->child('Makefile.PL')->exists, 'Makefile.PL exists';
 
-  chdir $testapp->subdir('lib/foo');
+  chdir $testapp->child('lib/foo');
 
   my $root = eval { $path->guess_root; } || '';
 
-  ok $root eq $testapp, 'root is testapp';
+  is $root->realpath => $testapp->realpath, 'root is testapp';
 
   chdir $current;
 
-  $testapp->remove;
+  $testapp->remove_tree;
 };
 
 subtest look_for_build_pl => sub {
   my $path = Module::New::Path->new;
 
-  my $current = dir('.');
-  my $testapp = dir('t/TestApp');
+  my $current = path('.')->absolute;
+  my $testapp = path('t/TestApp')->absolute;
      $testapp->mkpath;
-     $testapp->subdir('lib/foo')->mkpath;
-     $testapp->file('Build.PL')->touch;
-  ok $testapp->file('Build.PL')->exists, 'Build.PL exists';
+     $testapp->child('lib/foo')->mkpath;
+     $testapp->child('Build.PL')->touch;
+  ok $testapp->child('Build.PL')->exists, 'Build.PL exists';
 
-  chdir $testapp->subdir('lib/foo');
+  chdir $testapp->child('lib/foo');
 
   my $root = eval { $path->guess_root; } || '';
 
-  ok $root eq $testapp, 'root is testapp';
+  is $root->absolute => $testapp->absolute, 'root is testapp';
   chdir $current;
 
-  $testapp->remove;
+  $testapp->remove_tree;
 };
 
 subtest not_found => sub {
   my $path = Module::New::Path->new;
 
-  my $current = dir('.');
+  my $current = path('.')->absolute;
   my $dir;
   foreach my $candidate (qw( / /tmp )) {
-    $dir = dir($candidate);
+    $dir = path($candidate)->absolute;
     last if chdir $dir;
   }
   if ( $current eq $dir ) {
@@ -85,19 +85,19 @@ subtest not_found => sub {
 subtest with_args => sub {
   my $path = Module::New::Path->new;
 
-  my $current = dir('.');
-  my $testapp = dir('t/TestApp');
+  my $current = path('.')->absolute;
+  my $testapp = path('t/TestApp')->absolute;
   ok !$testapp->exists, 'testapp does not exist';
 
   local $@;
   my $root = eval { $path->guess_root('t/TestApp/'); } || '';
 
-  ok $root eq $testapp, 'root is testapp';
+  is $root->absolute => $testapp->absolute, 'root is testapp';
   ok $testapp->exists, 'testapp exists';
 
   chdir $current;
 
-  $testapp->remove;
+  $testapp->remove_tree;
 };
 
 done_testing;

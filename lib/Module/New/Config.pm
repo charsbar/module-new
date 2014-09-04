@@ -5,7 +5,7 @@ use warnings;
 use Carp;
 use File::HomeDir;
 use Getopt::Long ();
-use Path::Extended::Dir;
+use Path::Tiny ();
 use YAML::Tiny;
 
 sub new {
@@ -103,14 +103,14 @@ sub _search {
   my $self = shift;
 
   grep { $_->exists }
-  map  {( $_->file('.new_perl_module.yml'),
-          $_->file('.new_perl_module.yaml') )}
-  ( Path::Extended::Dir->new('.'), $self->_home );
+  map  {( $_->child('.new_perl_module.yml'),
+          $_->child('.new_perl_module.yaml') )}
+  ( Path::Tiny::path('.'), $self->_home );
 }
 
-sub _home { Path::Extended::Dir->new( File::HomeDir->my_home ) }
+sub _home { Path::Tiny::path( File::HomeDir->my_home ) }
 
-sub _default_file { shift->_home->file('.new_perl_module.yml') }
+sub _default_file { shift->_home->child('.new_perl_module.yml') }
 
 sub _prompt {
   my ($self, $prompt) = @_;

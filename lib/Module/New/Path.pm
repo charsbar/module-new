@@ -3,14 +3,13 @@ package Module::New::Path;
 use strict;
 use warnings;
 use Carp;
-use Path::Extended::File;
-use Path::Extended::Dir;
+use Path::Tiny ();
 
 sub new { bless { _root => '' }, shift }
 
 sub _root { shift->{_root} }
 
-sub file {
+sub _child {
   my $self = shift;
 
   croak "root is not defined; set it first" unless $self->_root;
@@ -18,22 +17,20 @@ sub file {
   my $context = Module::New->context;
   my $subdir  = $context->config('subdir');
 
-  $self->_file( $self->_root, $subdir, @_ );
+  $self->_root->child(grep {defined && length} $subdir, @_ );
 }
 
-sub dir {
-  my $self = shift;
-
-  croak "root is not defined; set it first" unless $self->_root;
-
-  my $context = Module::New->context;
-  my $subdir  = $context->config('subdir');
-
-  $self->_dir( $self->_root, $subdir, @_ );
+sub __child {
+  my $class = shift;
+  if (ref $_[0] eq 'Path::Tiny') {
+    shift->child(grep {defined && length} @_);
+  } else {
+    Path::Tiny::path(grep {defined && length} @_);
+  }
 }
 
-sub _file { shift; Path::Extended::File->new( grep {defined} @_ ) }
-sub _dir  { shift; Path::Extended::Dir->new( grep {defined} @_ ) }
+*file = *dir = \&_child;
+*_file = *_dir = \&__child;
 
 sub guess_root {
   my ($self, $path) = @_;
@@ -47,9 +44,9 @@ sub guess_root {
   my $try = 30;
   my $dir = $self->_dir('.');
   while ( $try-- and $dir->parent ne $dir ) {
-    if ( $dir->subdir('lib')->exists ) {
-      if ( $dir->file('Makefile.PL')->exists
-        or $dir->file('Build.PL')->exists
+    if ( $dir->child('lib')->exists ) {
+      if ( $dir->child('Makefile.PL')->exists
+        or $dir->child('Build.PL')->exists
       ) {
         return $self->set_root($dir);
       }
@@ -62,8 +59,7 @@ sub guess_root {
 sub set_root {
   my ($self, $path) = @_;
 
-  my $root = $self->{_root} = $self->_dir( $path || '.' );
-
+  my $root = $self->{_root} = Path::Tiny::path($path || '.')->absolute;
   croak "$root does not exist" unless $root->exists;
 
   Module::New->context->log( debug => "set root to $root" );
@@ -100,7 +96,7 @@ sub remove_dir {
     $dir = $self->dir($path);
   }
   if ( $dir->exists ) {
-    $dir->remove;
+    $dir->remove_tree;
     Module::New->context->log( info => "removed $path" );
   }
 }
@@ -120,7 +116,7 @@ sub create_file {
 
     if ( $file->exists ) {
       if ( $context->config('grace') ) {
-        $file->rename_to("$file.bak");
+        $file->rename("$file.bak");
         Module::New->context->log( info => "renamed $path to $path.bak" );
       }
       elsif ( $context->config('force') ) {
@@ -131,7 +127,8 @@ sub create_file {
         Carp::confess "$path already exists";
       }
     }
-    $file->save( $files{$path}, mkdir => 1 );
+    $file->parent->mkpath;
+    $file->spew( $files{$path} );
     Module::New->context->log( info => "created $path" );
   }
 }
@@ -181,7 +178,7 @@ looks for a Makefile.PL/Build.PL to make/build and makes there a root/base direc
 
 =head2 file, dir
 
-takes a (relative) path and returns a C<Path::Extended::File/Dir> object respectively. 
+takes a (relative) path and returns a C<Path::Tiny> object respectively. 
 
 =head2 create_dir, remove_dir
 
