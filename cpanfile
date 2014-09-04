@@ -11,8 +11,7 @@ requires 'Time::Piece'           => 0;
 requires 'YAML::Tiny'            => '1.51';
 
 on 'test' => sub {
-  requires 'Test::Classy'          => '0.04';
-  requires 'Test::More'            => '0.47';
+  requires 'Test::More'            => '0.96'; # subtest
   requires 'Test::UseAllModules'   => '0.09';
 };
 
