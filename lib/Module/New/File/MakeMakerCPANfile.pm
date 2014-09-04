@@ -9,7 +9,7 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker::CPANfile;
 
-my %params = (
+WriteMakefile(
     NAME          => '<%= $c->module %>',
     AUTHOR        => '<%= $c->config('author') %> <<%= $c->config('email') %>>',
     VERSION_FROM  => '<%= $c->mainfile %>',
@@ -21,8 +21,6 @@ my %params = (
         },
     },
 );
-
-WriteMakefile(%params);
 EOT
 };
 
