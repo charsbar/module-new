@@ -1,5 +1,10 @@
 Revision history for Module-New
 
+0.11 2014/09/05
+  - added a feature to bump up VERSIONs
+  - added a feature to create README from a pod
+  - switched to Path::Tiny, and subtest
+
 0.10 2013/10/08
   - added a feature to generate LICENSE
   - refactored ::License (sorry for backward-incompatibility)
