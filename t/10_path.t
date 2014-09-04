@@ -51,7 +51,7 @@ subtest look_for_build_pl => sub {
 
   my $root = eval { $path->guess_root; } || '';
 
-  is $root->absolute => $testapp->absolute, 'root is testapp';
+  is $root->realpath => $testapp->realpath, 'root is testapp';
   chdir $current;
 
   $testapp->remove_tree;
