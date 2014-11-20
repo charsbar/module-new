@@ -34,6 +34,7 @@ sub import {
   _install_dsl(caller) if $flag && $flag eq 'base';
 
   for my $module (sort {$b cmp $a} usesub 'Software::License') {
+    next unless $module->can('meta_name');
     $LICENSES{$module->meta_name}  ||= $module;
     $LICENSES{$module->meta2_name} ||= $module;
   }
