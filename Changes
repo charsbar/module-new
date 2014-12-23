@@ -1,5 +1,8 @@
 Revision history for Module-New
 
+0.13 2014/12/23
+  - fixed license notice in generated README
+
 0.12 2014/11/20
   - ignore Software::License:: packages that don't have
     necessary license infomation (reported by ANDK++)
