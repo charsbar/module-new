@@ -20,7 +20,7 @@ COPYRIGHT AND LICENSE
 
 Copyright (C) <%= $c->date->year %> <%= $c->config('author') %>
 
-<%= $c->license %>
+<%= $c->license->notice %>
 EOT
 };
 
