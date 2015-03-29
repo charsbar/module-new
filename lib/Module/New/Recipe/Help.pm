@@ -15,7 +15,7 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::Help - shows help
+Module::New::Recipe::Help - show help
 
 =head1 USAGE
 

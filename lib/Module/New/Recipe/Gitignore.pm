@@ -21,13 +21,17 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::Gitignore
+Module::New::Recipe::Gitignore - add .gitignore
 
-=head1 SYNOPSIS
+=head1 USAGE
 
-=head1 DESCRIPTION
+From the shell/command line:
 
-=head1 METHODS
+=over 4
+
+=item module_new gitignore
+
+=back
 
 =head1 AUTHOR
 

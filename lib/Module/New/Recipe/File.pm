@@ -27,7 +27,7 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::File - creates a file
+Module::New::Recipe::File - create a file
 
 =head1 USAGE
 

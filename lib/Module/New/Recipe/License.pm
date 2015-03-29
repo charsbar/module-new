@@ -23,13 +23,27 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::License
+Module::New::Recipe::License - add LICENSE
 
-=head1 SYNOPSIS
+=head1 USAGE
 
-=head1 DESCRIPTION
+From the shell/command line:
 
-=head1 METHODS
+=over 4
+
+=item module_new license
+
+=back
+
+=head1 OPTIONS
+
+=over 4
+
+=item license
+
+  module_new license --license perl
+
+=back
 
 =head1 AUTHOR
 

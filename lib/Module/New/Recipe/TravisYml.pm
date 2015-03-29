@@ -21,13 +21,17 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::TravisYml
+Module::New::Recipe::TravisYml - add .travis.yml
 
-=head1 SYNOPSIS
+=head1 USAGE
 
-=head1 DESCRIPTION
+From the shell/command line:
 
-=head1 METHODS
+=over 4
+
+=item module_new travis_yml
+
+=back
 
 =head1 AUTHOR
 

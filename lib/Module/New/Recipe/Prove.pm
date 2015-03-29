@@ -20,7 +20,7 @@ __END__
 
 =head1 NAME
 
-Module::New::Recipe::Prove - runs tests
+Module::New::Recipe::Prove - run tests
 
 =head1 USAGE
 
