@@ -12,6 +12,7 @@ lib/Module/New/Context.pm
 lib/Module/New/Date.pm
 lib/Module/New/File.pm
 lib/Module/New/File/Changes.pm
+lib/Module/New/File/Gitignore.pm
 lib/Module/New/File/License.pm
 lib/Module/New/File/LoadTest.pm
 lib/Module/New/File/MainModule.pm
@@ -27,6 +28,7 @@ lib/Module/New/File/Readme.pm
 lib/Module/New/File/Script.pm
 lib/Module/New/File/ShipIt.pm
 lib/Module/New/File/Test.pm
+lib/Module/New/File/TravisYml.pm
 lib/Module/New/File/XS.pm
 lib/Module/New/Files.pm
 lib/Module/New/License.pm
@@ -39,12 +41,14 @@ lib/Module/New/Recipe.pm
 lib/Module/New/Recipe/Dist.pm
 lib/Module/New/Recipe/Edit.pm
 lib/Module/New/Recipe/File.pm
+lib/Module/New/Recipe/Gitignore.pm
 lib/Module/New/Recipe/Help.pm
 lib/Module/New/Recipe/License.pm
 lib/Module/New/Recipe/Manifest.pm
 lib/Module/New/Recipe/NextVersion.pm
 lib/Module/New/Recipe/Prove.pm
 lib/Module/New/Recipe/ReadmeFromPod.pm
+lib/Module/New/Recipe/TravisYml.pm
 lib/Module/New/Template.pm
 LICENSE
 Makefile.PL
