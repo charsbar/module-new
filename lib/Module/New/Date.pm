@@ -2,7 +2,13 @@ package Module::New::Date;
 
 use strict;
 use warnings;
-use base qw( Time::Piece );
+
+use Time::Piece ();
+
+sub new
+{
+    Time::Piece->new
+}
 
 1;
 
