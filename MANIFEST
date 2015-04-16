@@ -9,7 +9,6 @@ lib/Module/New/Command/Test.pm
 lib/Module/New/Command/Version.pm
 lib/Module/New/Config.pm
 lib/Module/New/Context.pm
-lib/Module/New/Date.pm
 lib/Module/New/File.pm
 lib/Module/New/File/Changes.pm
 lib/Module/New/File/Gitignore.pm

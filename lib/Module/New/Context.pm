@@ -7,6 +7,7 @@ use Carp;
 use Module::New::Loader;
 use Module::New::Log;
 use Sub::Install 'reinstall_sub';
+use Time::Piece;
 
 foreach my $accessor (qw( template date path loader files )) {
   reinstall_sub({
@@ -25,9 +26,11 @@ sub new {
     $self->{lc $name} = $loader->load_class($name);
   }
 
-  foreach my $name (qw( Config Path Date Files )) {
+  foreach my $name (qw( Config Path Files )) {
     $self->{lc $name} = $loader->load($name);
   }
+
+  $self->{date} = Time::Piece->new;
 
   $self;
 }
