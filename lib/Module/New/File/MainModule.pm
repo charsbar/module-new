@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Module::New::File;
 
+our $VERSION = '0.15'; # because this file had one previously
+
 file '{MAINFILE}' => content { return <<'EOT';
 package <%= $c->module %>;
 
