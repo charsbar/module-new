@@ -33,6 +33,7 @@ functions {
       my $file = $info->{$package}{infile} or next;
       my $content = path($file)->slurp;
       $content =~ s|(VERSION\s*=\s*["'])$old_version(["'])|$1$version$2|;
+      $content =~ s/(^=head[1-6]\s+VERSION\n\n\s*(?:[Vv]ersion\s+)?)(?:0|[1-9][0-9]*)\.[0-9_]+(\n\n)/$1$version$2/ms;
       path($file)->spew($content);
       $context->log( info => "updated $file" );
     }
